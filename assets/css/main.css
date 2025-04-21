@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ecommerce-sage: #D4D2A5;
+  --color-ecommerce-green: #2A4D14;
+  --color-ecommerce-red: #B80C09;
+  --color-ecommerce-blue: #235789;
+  --color-ecommerce-black: #000000;
+
+}
