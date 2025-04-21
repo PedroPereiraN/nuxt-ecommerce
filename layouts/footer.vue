@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Separator from "~/components/ui/Separator.vue";
+</script>
+
 <template>
   <footer class="p-10 bg-ecommerce-sage">
     <div class="flex items-center gap-8">
@@ -13,8 +17,8 @@
         contact@email.com
       </p>
     </div>
-
-    <div class="border-b border-ecommerce-black my-6"></div>
+    <Separator />
+    <!-- <div class="border-b border-ecommerce-black my-6"></div> -->
 
     <div class="flex justify-between">
       <RouterLink to="contact-us"> Contact us </RouterLink>
