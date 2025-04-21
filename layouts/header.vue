@@ -19,9 +19,9 @@ const userItems = [
     class="flex justify-between px-10 py-2 items-center bg-ecommerce-sage font-medium"
   >
     <div class="flex gap-4 items-center">
-      <RouterLink to="/" class="text-ecommerce-green font-bold"
-        >Logo</RouterLink
-      >
+      <RouterLink to="/"
+        ><img src="@/assets/img/logo.svg" alt="logo" class="w-12"
+      /></RouterLink>
       <p class="flex items-center gap-1">
         Categories
         <Icon name="lucide:chevron-down" width="24" height="24" />

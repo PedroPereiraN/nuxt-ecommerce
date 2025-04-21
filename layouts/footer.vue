@@ -6,7 +6,7 @@ import { PRIVACY_TERMS, CONTACT_US } from "@/utils/paths";
 <template>
   <footer class="p-10 bg-ecommerce-sage">
     <div class="flex items-center gap-8">
-      <h2 class="text-ecommerce-green font-bold">Logo</h2>
+      <img src="@/assets/img/logo.svg" alt="logo" class="w-12" />
       <h2 class="font-bold text-2xl">Ecommerce</h2>
       <p>|</p>
       <p class="flex items-center gap-1">
