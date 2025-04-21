@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Separator from "~/components/ui/Separator.vue";
+import { PRIVACY_TERMS, CONTACT_US } from "@/utils/paths";
 </script>
 
 <template>
@@ -18,11 +19,10 @@ import Separator from "~/components/ui/Separator.vue";
       </p>
     </div>
     <Separator />
-    <!-- <div class="border-b border-ecommerce-black my-6"></div> -->
 
     <div class="flex justify-between">
-      <RouterLink to="contact-us"> Contact us </RouterLink>
-      <RouterLink to="privacy-terms"> Privacy terms </RouterLink>
+      <RouterLink :to="CONTACT_US"> Contact us </RouterLink>
+      <RouterLink :to="PRIVACY_TERMS"> Privacy terms </RouterLink>
     </div>
   </footer>
 </template>

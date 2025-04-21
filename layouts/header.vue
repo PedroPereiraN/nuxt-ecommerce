@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Dropdown from "~/components/ui/Dropdown.vue";
+import { CART } from "@/utils/paths";
 
 const userItems = [
   {
@@ -41,10 +42,10 @@ const userItems = [
         <Icon name="lucide:user" width="24" height="24" />
         User
       </p> -->
-      <p class="flex items-center gap-1">
+      <RouterLink :to="CART" class="flex items-center gap-1">
         <Icon name="lucide:shopping-cart" width="24" height="24" />
         Cart
-      </p>
+      </RouterLink>
     </div>
   </header>
 </template>
