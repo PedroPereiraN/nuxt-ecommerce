@@ -21,9 +21,9 @@ const userItems = [
     class="flex justify-between px-10 py-2 items-center bg-ecommerce-sage font-medium"
   >
     <div class="flex gap-4 items-center">
-      <RouterLink to="/"
+      <NuxtLink to="/"
         ><img src="@/assets/img/logo.svg" alt="logo" class="w-12"
-      /></RouterLink>
+      /></NuxtLink>
       <Select placeholder="Categories" variant="transparent">
         <SelectItem value="1"> opção 1 </SelectItem>
       </Select>
@@ -39,10 +39,10 @@ const userItems = [
     </div>
     <div class="flex items-center gap-4">
       <Dropdown label="User" labelIcon="lucide:user" :items="userItems" />
-      <RouterLink :to="CART" class="flex items-center gap-1">
+      <NuxtLink :to="CART" class="flex items-center gap-1">
         <Icon name="lucide:shopping-cart" width="24" height="24" />
         Cart
-      </RouterLink>
+      </NuxtLink>
     </div>
   </header>
 </template>

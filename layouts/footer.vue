@@ -21,8 +21,8 @@ import { PRIVACY_TERMS, CONTACT_US } from "@/utils/paths";
     <Separator />
 
     <div class="flex justify-between">
-      <RouterLink :to="CONTACT_US"> Contact us </RouterLink>
-      <RouterLink :to="PRIVACY_TERMS"> Privacy terms </RouterLink>
+      <NuxtLink :to="CONTACT_US"> Contact us </NuxtLink>
+      <NuxtLink :to="PRIVACY_TERMS"> Privacy terms </NuxtLink>
     </div>
   </footer>
 </template>

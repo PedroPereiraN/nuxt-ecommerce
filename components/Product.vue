@@ -12,9 +12,9 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <RouterLink :to="props.item.path">
+  <NuxtLink :to="props.item.path">
     <img :src="props.item.image" class="w-96 h-64" />
     <p class="font-bold text-xl mt-1">{{ props.item.name }}</p>
     <p class="">$ {{ props.item.price }}</p>
-  </RouterLink>
+  </NuxtLink>
 </template>
