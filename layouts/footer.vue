@@ -4,11 +4,13 @@ import { PRIVACY_TERMS, CONTACT_US } from "@/utils/paths";
 </script>
 
 <template>
-  <footer class="p-10 bg-ecommerce-sage hidden">
-    <div class="flex items-center gap-8">
-      <img src="@/assets/img/logo.svg" alt="logo" class="w-12" />
-      <h2 class="font-bold text-2xl">Ecommerce</h2>
-      <p>|</p>
+  <footer class="p-10 bg-ecommerce-sage">
+    <div class="flex flex-col md:flex-row md:items-center gap-8">
+      <div class="flex gap-8 items-center">
+        <img src="@/assets/img/logo.svg" alt="logo" class="w-12" />
+        <h2 class="font-bold text-2xl">Ecommerce</h2>
+      </div>
+      <p class="hidden md:block">|</p>
       <p class="flex items-center gap-1">
         <Icon name="lucide:phone" width="24" height="24" />
         xxxx xxx xxxx

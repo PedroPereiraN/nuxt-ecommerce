@@ -67,7 +67,7 @@ const showMobileSidebar: Ref<boolean> = ref(false);
   </header>
 </template>
 
-<style>
+<style scoped>
 .mobile-sidebar-enter-active {
   transition: all 0.3s ease-out;
 }

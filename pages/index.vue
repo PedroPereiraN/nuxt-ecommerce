@@ -2,11 +2,8 @@
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import { ref, type Ref } from "vue";
 import Product from "~/components/Product.vue";
-import {
-  getCarouselImages,
-  getBestSellers,
-  getProducts,
-} from "~/services/home-queries";
+import { getCarouselImages } from "~/services/home-queries";
+import { getBestSellers, getProducts } from "~/services/product-queries";
 import type {
   HomeImageCarousel,
   Product as ProductType,
@@ -48,7 +45,9 @@ const bestSellersCarouselConfig = {
       </Slide>
 
       <template #addons>
-        <Navigation />
+        <div class="hidden md:block">
+          <Navigation />
+        </div>
         <Pagination />
       </template>
     </Carousel>
