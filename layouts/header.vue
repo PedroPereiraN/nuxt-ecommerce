@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Dropdown from "~/components/ui/Dropdown.vue";
+import Select from "~/components/ui/Select.vue";
+import SelectItem from "~/components/ui/SelectItem.vue";
 import { CART } from "@/utils/paths";
 
 const userItems = [
@@ -22,10 +24,9 @@ const userItems = [
       <RouterLink to="/"
         ><img src="@/assets/img/logo.svg" alt="logo" class="w-12"
       /></RouterLink>
-      <p class="flex items-center gap-1">
-        Categories
-        <Icon name="lucide:chevron-down" width="24" height="24" />
-      </p>
+      <Select placeholder="Categories" variant="transparent">
+        <SelectItem value="1"> opção 1 </SelectItem>
+      </Select>
     </div>
     <div class="relative w-fit">
       <input class="rounded-full h-8 w-96 px-4 bg-white" placeholder="Search" />
@@ -38,10 +39,6 @@ const userItems = [
     </div>
     <div class="flex items-center gap-4">
       <Dropdown label="User" labelIcon="lucide:user" :items="userItems" />
-      <!-- <p class="flex items-center gap-1">
-        <Icon name="lucide:user" width="24" height="24" />
-        User
-      </p> -->
       <RouterLink :to="CART" class="flex items-center gap-1">
         <Icon name="lucide:shopping-cart" width="24" height="24" />
         Cart

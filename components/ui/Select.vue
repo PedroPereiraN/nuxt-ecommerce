@@ -21,6 +21,7 @@ import type {
 export type Props = {
   placeholder?: string;
   placeholderIcon?: string;
+  variant?: "default" | "transparent" | undefined;
 } & SelectRootProps;
 
 export type CustomEmits = {
@@ -31,17 +32,20 @@ const props = defineProps<Props>();
 const emits = defineEmits<CustomEmits>();
 
 const forward = useForwardPropsEmits(props, emits);
+
+const variants = {
+  default: "bg-gray-100",
+  transparent: "bg-transparent",
+};
 </script>
 
 <template>
   <SelectRoot v-bind="forward" class="h-10">
     <SelectTrigger
-      class="rounded-lg bg-gray-100 flex justify-between items-center w-full py-2 px-4"
+      :class="`flex items-center justify-between rounded-lg w-full py-2 px-4 ${variants[props?.variant ? props.variant : 'default']}  cursor-pointer`"
     >
       <SelectValue :placeholder="props.placeholder" />
-      <SelectIcon>
-        <Icon name="lucide:chevron-down" width="24" height="24" />
-      </SelectIcon>
+      <Icon name="lucide:chevron-down" />
     </SelectTrigger>
 
     <SelectPortal>
