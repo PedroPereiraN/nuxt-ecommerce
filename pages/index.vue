@@ -1,15 +1,31 @@
 <script setup lang="ts">
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { ref, type Ref } from "vue";
 import Product from "~/components/Product.vue";
 import {
   getCarouselImages,
   getBestSellers,
   getProducts,
 } from "~/services/home-queries";
+import type {
+  HomeImageCarousel,
+  Product as ProductType,
+} from "~/utils/api-types";
+import { numberMask } from "~/utils/masks";
 
-const carouselImages = await getCarouselImages();
-const bestSellers = await getBestSellers();
-const products = await getProducts();
+const carouselImages: HomeImageCarousel[] = await getCarouselImages();
+const bestSellers: ProductType[] = await getBestSellers();
+
+const quantityOfProducts: Ref<number> = ref(16);
+const products: Ref<ProductType[]> = ref(
+  await getProducts(quantityOfProducts.value),
+);
+
+const showMoreProducts = async (): Promise<void> => {
+  quantityOfProducts.value += 8;
+
+  products.value = await getProducts(quantityOfProducts.value);
+};
 
 const carouselConfig = {
   itemsToShow: 1,
@@ -28,7 +44,7 @@ const bestSellersCarouselConfig = {
   <main>
     <Carousel v-bind="carouselConfig">
       <Slide v-for="slide in carouselImages" :key="slide.id">
-        <img :src="slide.image" />
+        <img :src="slide.imageURL" />
       </Slide>
 
       <template #addons>
@@ -43,10 +59,10 @@ const bestSellersCarouselConfig = {
         <Slide v-for="bestSeller in bestSellers" :key="bestSeller.id">
           <Product
             :item="{
-              image: bestSeller.image,
+              image: bestSeller.imageURL,
               name: bestSeller.name,
               path: VIEW_PRODUCT(bestSeller.id),
-              price: bestSeller.price,
+              price: numberMask(bestSeller.price, 2),
             }"
           />
         </Slide>
@@ -64,15 +80,19 @@ const bestSellersCarouselConfig = {
           v-for="product in products"
           :key="product.id"
           :item="{
-            image: product.image,
+            image: product.imageURL,
             name: product.name,
             path: VIEW_PRODUCT(product.id),
-            price: product.price,
+            price: numberMask(product.price, 2),
           }"
         />
       </div>
       <div class="flex justify-center mt-10">
-        <button type="button" class="flex items-center gap-2 cursor-pointer">
+        <button
+          type="button"
+          class="flex items-center gap-2 cursor-pointer"
+          @click="showMoreProducts()"
+        >
           See more
           <Icon name="lucide:chevron-down" />
         </button>

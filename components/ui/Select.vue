@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import {
   SelectContent,
-  SelectIcon,
   SelectPortal,
   SelectRoot,
   SelectScrollDownButton,

@@ -4,7 +4,7 @@ import { PRIVACY_TERMS, CONTACT_US } from "@/utils/paths";
 </script>
 
 <template>
-  <footer class="p-10 bg-ecommerce-sage">
+  <footer class="p-10 bg-ecommerce-sage hidden">
     <div class="flex items-center gap-8">
       <img src="@/assets/img/logo.svg" alt="logo" class="w-12" />
       <h2 class="font-bold text-2xl">Ecommerce</h2>
