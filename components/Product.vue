@@ -13,7 +13,7 @@ const props = defineProps<Props>();
 
 <template>
   <NuxtLink :to="props.item.path">
-    <img :src="props.item.image" class="w-64 h-56 md:w-96 md:h-64" />
+    <img :src="props.item.image" class="w-64 aspect-square" />
     <p class="font-bold text-xl mt-1">{{ props.item.name }}</p>
     <p class="">$ {{ props.item.price }}</p>
   </NuxtLink>

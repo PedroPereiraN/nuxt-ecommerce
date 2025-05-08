@@ -100,3 +100,29 @@ function goToImage(index: number) {
     </div>
   </div>
 </template>
+
+<style>
+.right-enter-active,
+.left-enter-active,
+.right-leave-active,
+.left-leave-active {
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+}
+
+.left-enter-from {
+  transform: translateX(-100%);
+}
+
+.left-leave-to {
+  transform: translateX(100%);
+}
+
+.right-enter-from {
+  transform: translateX(100%);
+}
+
+.right-leave-to {
+  transform: translateX(-100%);
+}
+</style>
