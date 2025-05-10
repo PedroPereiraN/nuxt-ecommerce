@@ -24,18 +24,23 @@ const showMoreProducts = async (): Promise<void> => {
 };
 
 const carouselDirection: Ref<"list-left" | "list-right"> = ref("list-left");
-const showingBestSellers: Ref<number[]> = ref([0, 1, 2]);
+const showingBestSellers: Ref<ProductType[]> = ref([]);
+showingBestSellers.value.push(bestSellers[0]);
+showingBestSellers.value.push(bestSellers[1]);
+showingBestSellers.value.push(bestSellers[2]);
 const canChangeImage: Ref<boolean> = ref(true);
 
 function changeProductsList(direction: "left" | "right") {
   if (canChangeImage.value) {
     carouselDirection.value = `list-${direction}`;
     if (direction == "left") {
-      showingBestSellers.value = [0, 1, 2];
+      showingBestSellers.value.splice(showingBestSellers.value.length - 1, 1);
+      showingBestSellers.value.unshift(bestSellers[0]);
     }
 
     if (direction == "right") {
-      showingBestSellers.value = [1, 2, 3];
+      showingBestSellers.value.splice(0, 1);
+      showingBestSellers.value.push(bestSellers[bestSellers.length - 1]);
     }
 
     canChangeImage.value = false;
@@ -59,21 +64,16 @@ function changeProductsList(direction: "left" | "right") {
           tag="ul"
           class="flex justify-around mx-10"
         >
-          <template
-            v-for="(bestSeller, index) in bestSellers"
-            :key="bestSeller.id"
-          >
-            <li v-if="showingBestSellers.includes(index)">
-              <Product
-                :item="{
-                  image: bestSeller.imageURL,
-                  name: bestSeller.name,
-                  price: numberMask(bestSeller.price, 2),
-                  path: VIEW_PRODUCT(bestSeller.id),
-                }"
-              />
-            </li>
-          </template>
+          <li v-for="bestSeller in showingBestSellers" :key="bestSeller.id">
+            <Product
+              :item="{
+                image: bestSeller.imageURL,
+                name: bestSeller.name,
+                price: numberMask(bestSeller.price, 2),
+                path: VIEW_PRODUCT(bestSeller.id),
+              }"
+            />
+          </li>
         </TransitionGroup>
         <button
           type="button"
