@@ -24,59 +24,18 @@ const showMoreProducts = async (): Promise<void> => {
 };
 
 const carouselDirection: Ref<"list-left" | "list-right"> = ref("list-left");
-const showingBestSellers: Ref<Product[]> = ref([]);
-const currentFirstIndex: Ref<number> = ref(0);
-const currentLastIndex: Ref<number> = ref(2);
+const showingBestSellers: Ref<number[]> = ref([0, 1, 2]);
 const canChangeImage: Ref<boolean> = ref(true);
-showingBestSellers.value.push(bestSellers[0]);
-showingBestSellers.value.push(bestSellers[1]);
-showingBestSellers.value.push(bestSellers[2]);
-const firstFirstImage: ProductType = bestSellers[0];
-const firstLastImage: ProductType = bestSellers[bestSellers.length - 1];
 
 function changeProductsList(direction: "left" | "right") {
   if (canChangeImage.value) {
     carouselDirection.value = `list-${direction}`;
-
-    if (direction == "left" && currentFirstIndex.value == 0) {
-      currentFirstIndex.value = bestSellers.length - 1;
-    } else if (direction == "left") {
-      currentFirstIndex.value -= 1;
-    }
-
-    if (
-      direction == "right" &&
-      currentFirstIndex.value == bestSellers.length - 1
-    ) {
-      currentFirstIndex.value = 0;
-    } else if (direction == "right") {
-      currentFirstIndex.value += 1;
-    }
-
-    if (direction == "left" && currentLastIndex.value == 0) {
-      currentLastIndex.value = 2;
-    } else if (direction == "left") {
-      currentLastIndex.value -= 1;
-    }
-
-    if (
-      direction == "right" &&
-      currentLastIndex.value == bestSellers.length - 1
-    ) {
-      currentLastIndex.value = 0;
-    } else if (direction == "right") {
-      currentLastIndex.value += 1;
-    }
-
     if (direction == "left") {
-      showingBestSellers.value.splice(showingBestSellers.value.length - 1, 1);
-      showingBestSellers.value.unshift(bestSellers[currentFirstIndex.value]);
+      showingBestSellers.value = [0, 1, 2];
     }
 
     if (direction == "right") {
-      showingBestSellers.value.splice(0, 1);
-
-      showingBestSellers.value.push(bestSellers[currentLastIndex.value]);
+      showingBestSellers.value = [1, 2, 3];
     }
 
     canChangeImage.value = false;
@@ -100,19 +59,21 @@ function changeProductsList(direction: "left" | "right") {
           tag="ul"
           class="flex justify-around mx-10"
         >
-          <li
-            v-for="(bestSeller, index) in showingBestSellers"
+          <template
+            v-for="(bestSeller, index) in bestSellers"
             :key="bestSeller.id"
           >
-            <Product
-              :item="{
-                image: bestSeller.imageURL,
-                name: bestSeller.name,
-                price: numberMask(bestSeller.price, 2),
-                path: VIEW_PRODUCT(bestSeller.id),
-              }"
-            />
-          </li>
+            <li v-if="showingBestSellers.includes(index)">
+              <Product
+                :item="{
+                  image: bestSeller.imageURL,
+                  name: bestSeller.name,
+                  price: numberMask(bestSeller.price, 2),
+                  path: VIEW_PRODUCT(bestSeller.id),
+                }"
+              />
+            </li>
+          </template>
         </TransitionGroup>
         <button
           type="button"
@@ -130,9 +91,6 @@ function changeProductsList(direction: "left" | "right") {
         </button>
       </div>
     </section>
-    {{ currentFirstIndex }}
-    {{ currentLastIndex }}
-    {{ bestSellers.length }}
     <section class="m-20">
       <h2 class="font-bold text-3xl mb-10">For you</h2>
       <div class="grid grid-cols-4 gap-5">
@@ -163,34 +121,33 @@ function changeProductsList(direction: "left" | "right") {
 
 <style>
 .list-right-move,
-.list-left-move, /* apply transition to moving elements */
+.list-left-move,
 .list-right-enter-active,
-
-.list-left-leave-active,
-.list-left-enter-active, {
-  transition: all 0.3s ease-in-out;
+.list-left-enter-active {
+  transition: all 1s ease-in-out;
+  position: static;
 }
 
-.list-right-leave-active {
-  transition: all 0.3s ease-in-out;
+.list-right-leave-active,
+.list-left-leave-active {
   position: absolute;
 }
 
-.list-right-leave-to {
-  opacity: 0;
-  transform: translateX(-233%);
-}
 .list-right-enter-from {
+  transform: translateX(200%);
+}
+
+.list-right-leave-to {
+  transform: translateX(-300%);
   opacity: 0;
-  transform: translateX(233%);
+}
+
+.list-left-enter-from {
+  transform: translateX(-200%);
 }
 
 .list-left-leave-to {
+  transform: translateX(300%);
   opacity: 0;
-  transform: translateX(233%);
-}
-.list-left-enter-from {
-  opacity: 0;
-  transform: translateX(-233%);
 }
 </style>
