@@ -130,6 +130,7 @@ function changeProductsList(direction: "left" | "right") {
 
 .list-right-leave-active,
 .list-left-leave-active {
+  transition: all 1s ease-in-out;
   position: absolute;
 }
 
